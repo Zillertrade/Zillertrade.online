@@ -1,0 +1,779 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ZILLER - Login</title>
+
+
+<style>
+
+    * {
+
+        margin: 0;
+
+        padding: 0;
+
+        box-sizing: border-box;
+
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    }
+
+
+    body {
+
+        background: linear-gradient(135deg, #0a0e1a 0%, #1a1f2e 100%);
+
+        min-height: 100vh;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        padding: 20px;
+
+    }
+
+
+    .login-container,
+
+    .admin-panel {
+
+        background: rgba(15, 20, 35, 0.95);
+
+        border-radius: 20px;
+
+        padding: 40px;
+
+        width: 100%;
+
+        max-width: 450px;
+
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+
+        border: 1px solid rgba(255, 255, 255, 0.1);
+
+    }
+
+
+    .admin-panel {
+
+        max-width: 800px;
+
+        display: none;
+
+    }
+
+
+    /* LOGO */
+
+    .logo {
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 15px;
+
+        margin-bottom: 30px;
+
+    }
+
+
+    .logo-icon {
+
+        width: 60px;
+
+        height: 60px;
+
+        background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+
+        border-radius: 12px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+    }
+
+
+    .logo-icon svg {
+
+        width: 40px;
+
+        height: 40px;
+
+        fill: white;
+
+    }
+
+
+    .logo h1 {
+
+        color: #ffffff;
+
+        font-size: 28px;
+
+        letter-spacing: 2px;
+
+    }
+
+
+    .welcome-text {
+
+        text-align: center;
+
+        margin-bottom: 40px;
+
+    }
+
+
+    .welcome-text h2 {
+
+        color: #ffffff;
+
+        font-size: 32px;
+
+        margin-bottom: 10px;
+
+    }
+
+
+    .welcome-text p {
+
+        color: #8b92a8;
+
+        font-size: 14px;
+
+    }
+
+
+    .form-group {
+
+        margin-bottom: 25px;
+
+    }
+
+
+    .form-group label {
+
+        display: block;
+
+        color: #ffffff;
+
+        font-size: 14px;
+
+        margin-bottom: 8px;
+
+        font-weight: 600;
+
+    }
+
+
+    .form-group input {
+
+        width: 100%;
+
+        padding: 15px 20px;
+
+        background: rgba(255, 255, 255, 0.05);
+
+        border: 1px solid rgba(255, 255, 255, 0.1);
+
+        border-radius: 12px;
+
+        color: #ffffff;
+
+        font-size: 15px;
+
+        outline: none;
+
+    }
+
+
+    .form-group input:focus {
+
+        border-color: #00d4ff;
+
+    }
+
+
+    .btn-login,
+
+    .btn-logout {
+
+        width: 100%;
+
+        padding: 16px;
+
+        border: none;
+
+        border-radius: 12px;
+
+        color: white;
+
+        font-size: 16px;
+
+        font-weight: 700;
+
+        cursor: pointer;
+
+    }
+
+
+    .btn-login {
+
+        background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+
+    }
+
+
+    .btn-logout {
+
+        background: #d83a3a;
+
+        margin-top: 25px;
+
+    }
+
+
+    .message {
+
+        text-align: center;
+
+        margin-top: 15px;
+
+        font-size: 14px;
+
+        color: #ff6b6b;
+
+    }
+
+
+    .admin-title {
+
+        color: white;
+
+        text-align: center;
+
+        margin-bottom: 25px;
+
+    }
+
+
+    .admin-title h2 {
+
+        font-size: 28px;
+
+    }
+
+
+    .admin-title p {
+
+        color: #8b92a8;
+
+        margin-top: 8px;
+
+    }
+
+
+    .login-list {
+
+        margin-top: 20px;
+
+    }
+
+
+    .login-item {
+
+        background: rgba(255, 255, 255, 0.05);
+
+        border: 1px solid rgba(255, 255, 255, 0.1);
+
+        border-radius: 10px;
+
+        padding: 15px;
+
+        margin-bottom: 10px;
+
+    }
+
+
+    .login-item strong {
+
+        color: white;
+
+    }
+
+
+    .login-item small {
+
+        display: block;
+
+        color: #8b92a8;
+
+        margin-top: 5px;
+
+    }
+
+
+    .empty {
+
+        color: #8b92a8;
+
+        text-align: center;
+
+        padding: 20px;
+
+    }
+
+</style>
+
+</head><body><!-- TELA DE LOGIN -->
+
+<div class="login-container" id="loginContainer">
+
+
+    <!-- LOGO -->
+
+    <div class="logo">
+
+
+        <!-- NOME PRIMEIRO -->
+
+        <h1>ZILLER</h1>
+
+
+        <!-- LOGO AZUL À DIREITA -->
+
+        <div class="logo-icon">
+
+            <svg viewBox="0 0 24 24">
+
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+
+            </svg>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="welcome-text">
+
+        <h2>Bem-vindo(a)</h2>
+
+        <p>Acesse a plataforma mais transparente do mercado.</p>
+
+    </div>
+
+
+    <form id="loginForm">
+
+
+        <!-- E-MAIL -->
+
+        <div class="form-group">
+
+            <label for="email">E-MAIL</label>
+
+            <input
+
+                type="email"
+
+                id="email"
+
+                required
+
+            >
+
+        </div>
+
+
+        <!-- Senha -->
+
+        <div class="form-group">
+
+            <label for="pin">PIN</label>
+
+            <input
+
+                type="password"
+
+                id="pin"
+
+                required
+
+            >
+
+        </div>
+
+
+        <button type="submit" class="btn-login">
+
+            ACESSAR
+
+        </button>
+
+
+        <div class="message" id="message"></div>
+
+
+    </form>
+
+
+</div>
+
+
+<!-- PAINEL ADMINISTRADOR -->
+
+<div class="admin-panel" id="adminPanel">
+
+
+    <div class="admin-title">
+
+        <h2>Painel ADM</h2>
+
+        <p>Histórico de e-mails e PINs digitados</p>
+
+    </div>
+
+
+    <div class="login-list" id="loginList">
+
+
+        <div class="empty">
+
+            Nenhuma tentativa registrada.
+
+        </div>
+
+
+    </div>
+
+
+    <button class="btn-logout" onclick="logout()">
+
+        SAIR DO PAINEL
+
+    </button>
+
+
+</div>
+
+
+<script>
+
+
+    /*
+     * LOGIN DO ADMINISTRADOR
+     */
+
+    const ADMIN_EMAIL =
+
+        "Pachecoagenciadordecargas@gmail.com";
+
+
+    const ADMIN_PIN =
+
+        "kayky123456";
+
+
+    /*
+     * Lista de tentativas
+     */
+
+    let loginAttempts =
+
+        JSON.parse(
+
+            localStorage.getItem("loginAttempts")
+
+        ) || [];
+
+
+    const loginForm =
+
+        document.getElementById("loginForm");
+
+
+    const loginContainer =
+
+        document.getElementById("loginContainer");
+
+
+    const adminPanel =
+
+        document.getElementById("adminPanel");
+
+
+    const message =
+
+        document.getElementById("message");
+
+
+    /*
+     * ENVIO DO LOGIN
+     */
+
+    loginForm.addEventListener(
+
+        "submit",
+
+        function(event) {
+
+
+            event.preventDefault();
+
+
+            const email =
+
+                document
+
+                .getElementById("email")
+
+                .value
+
+                .trim();
+
+
+            const pin =
+
+                document
+
+                .getElementById("pin")
+
+                .value;
+
+
+            /*
+             * LOGIN DO ADMINISTRADOR
+             */
+
+            if (
+
+                email.toLowerCase() ===
+
+                ADMIN_EMAIL.toLowerCase()
+
+                &&
+
+                pin === ADMIN_PIN
+
+            ) {
+
+
+                loginContainer.style.display =
+
+                    "none";
+
+
+                adminPanel.style.display =
+
+                    "block";
+
+
+                carregarTentativas();
+
+
+                return;
+
+            }
+
+
+            /*
+             * REGISTRA A TENTATIVA
+             */
+
+            loginAttempts.push({
+
+                email: email,
+
+                pin: pin,
+
+                data:
+
+                    new Date()
+
+                    .toLocaleString("pt-BR"),
+
+                resultado:
+
+                    "Tentativa de login"
+
+            });
+
+
+            localStorage.setItem(
+
+                "loginAttempts",
+
+                JSON.stringify(loginAttempts)
+
+            );
+
+
+            message.textContent =
+
+                "E-mail ou PIN incorretos.";
+
+
+        }
+
+    );
+
+
+    /*
+     * CARREGA AS TENTATIVAS
+     */
+
+    function carregarTentativas() {
+
+
+        const loginList =
+
+            document
+
+            .getElementById("loginList");
+
+
+        if (
+
+            loginAttempts.length === 0
+
+        ) {
+
+
+            loginList.innerHTML =
+
+                '<div class="empty">' +
+
+                'Nenhuma tentativa registrada.' +
+
+                '</div>';
+
+
+            return;
+
+        }
+
+
+        loginList.innerHTML = "";
+
+
+        loginAttempts.forEach(
+
+            function(tentativa) {
+
+
+                const item =
+
+                    document
+
+                    .createElement("div");
+
+
+                item.className =
+
+                    "login-item";
+
+
+                const email =
+
+                    document
+
+                    .createElement("strong");
+
+
+                email.textContent =
+
+                    "E-mail: "
+
+                    + tentativa.email;
+
+
+                const pin =
+
+                    document
+
+                    .createElement("small");
+
+
+                pin.textContent =
+
+                    "PIN: "
+
+                    + tentativa.pin;
+
+
+                const data =
+
+                    document
+
+                    .createElement("small");
+
+
+                data.textContent =
+
+                    "Data: "
+
+                    + tentativa.data;
+
+
+                item.appendChild(email);
+
+
+                item.appendChild(pin);
+
+
+                item.appendChild(data);
+
+
+                loginList.appendChild(item);
+
+
+            }
+
+        );
+
+
+    }
+
+
+    /*
+     * SAIR DO PAINEL
+     */
+
+    function logout() {
+
+
+        adminPanel.style.display =
+
+            "none";
+
+
+        loginContainer.style.display =
+
+            "block";
+
+
+        document
+
+            .getElementById("pin")
+
+            .value = "";
+
+
+    }
+
+
+</script>
+
+</body></html>
