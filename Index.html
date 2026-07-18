@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ZILLER - Login</title>
+
+
+    <style>
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+        }
+
+
+        body {
+
+            background: linear-gradient(
+
+                135deg,
+
+                #050a13 0%,
+
+                #0b111d 100%
+
+            );
+
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 20px;
+
+        }
+
+
+        .login-container,
+
+        .admin-panel {
+
+            background: rgba(8, 15, 27, 0.96);
+
+            border-radius: 28px;
+
+            padding: 40px;
+
+            width: 100%;
+
+            max-width: 670px;
+
+            box-shadow:
+
+                0 20px 60px rgba(0, 0, 0, 0.5);
+
+            border: 1px solid rgba(255, 255, 255, 0.1);
+
+        }
+
+
+        .admin-panel {
+
+            max-width: 800px;
+
+            display: none;
+
+        }
+
+
+        .logo {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 15px;
+
+            margin-bottom: 55px;
+
+        }
+
+
+        .logo-icon {
+
+            width: 60px;
+
+            height: 60px;
+
+            background: linear-gradient(
+
+                135deg,
+
+                #00d4ff 0%,
+
+                #0099cc 100%
+
+            );
+
+            border-radius: 12px;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+        }
+
+
+        .logo-icon svg {
+
+            width: 40px;
+
+            height: 40px;
+
+            fill: white;
+
+        }
+
+
+        .logo h1 {
+
+            color: #ffffff;
+
+            font-size: 40px;
+
+            letter-spacing: 2px;
+
+        }
+
+
+        .welcome-text {
+
+            text-align: center;
+
+            margin-bottom: 55px;
+
+        }
+
+
+        .welcome-text h2 {
+
+            color: #ffffff;
+
+            font-size: 42px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .welcome-text p {
+
+            color: #8b92a8;
+
+            font-size: 20px;
+
+            line-height: 1.5;
+
+        }
+
+
+        .form-group {
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .form-group label {
+
+            display: block;
+
+            color: #8b92a8;
+
+            font-size: 18px;
+
+            font-weight: 700;
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .form-group input {
+
+            width: 100%;
+
+            padding: 25px;
+
+            background: rgba(2, 8, 18, 0.75);
+
+            border: 1px solid rgba(255, 255, 255, 0.18);
+
+            border-radius: 20px;
+
+            color: #ffffff;
+
+            font-size: 19px;
+
+            outline: none;
+
+        }
+
+
+        .form-group input:focus {
+
+            border-color: #00d4ff;
+
+        }
+
+
+        .form-group input::placeholder {
+
+            color: #8b92a8;
+
+        }
+
+
+        .forgot-password {
+
+            display: block;
+
+            text-align: right;
+
+            color: #00d4ff;
+
+            font-size: 18px;
+
+            font-weight: 600;
+
+            text-decoration: none;
+
+            margin: 5px 0 40px;
+
+        }
+
+
+        .btn-login,
+
+        .btn-logout,
+
+        .btn-metamask {
+
+            width: 100%;
+
+            padding: 25px;
+
+            border: none;
+
+            border-radius: 20px;
+
+            color: white;
+
+            font-size: 24px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+        }
+
+
+        .btn-login {
+
+            background: linear-gradient(
+
+                135deg,
+
+                #00c4df 0%,
+
+                #00afd0 100%
+
+            );
+
+            color: #06101b;
+
+            box-shadow:
+
+                0 0 25px rgba(0, 212, 255, 0.35);
+
+        }
+
+
+        .web3-divider {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 25px;
+
+            margin: 55px 0 35px;
+
+            color: #8b92a8;
+
+            font-size: 18px;
+
+            font-weight: 700;
+
+            letter-spacing: 2px;
+
+        }
+
+
+        .web3-divider::before,
+
+        .web3-divider::after {
+
+            content: "";
+
+            flex: 1;
+
+            height: 1px;
+
+            background: rgba(255, 255, 255, 0.12);
+
+        }
+
+
+        .btn-metamask {
+
+            background: #f6851b;
+
+            box-shadow:
+
+                0 0 25px rgba(246, 133, 27, 0.25);
+
+        }
+
+
+        .metamask-icon {
+
+            margin-right: 12px;
+
+        }
+
+
+        .create-account {
+
+            text-align: center;
+
+            color: #aeb4c2;
+
+            font-size: 20px;
+
+            margin-top: 55px;
+
+        }
+
+
+        .create-account a {
+
+            color: #00d4ff;
+
+            font-weight: 700;
+
+            text-decoration: none;
+
+        }
+
+
+        .message {
+
+            text-align: center;
+
+            margin-top: 15px;
+
+            font-size: 14px;
+
+            color: #ff6b6b;
+
+        }
+
+
+        .admin-title {
+
+            color: white;
+
+            text-align: center;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .admin-title h2 {
+
+            font-size: 28px;
+
+        }
+
+
+        .admin-title p {
+
+            color: #8b92a8;
+
+            margin-top: 8px;
+
+        }
+
+
+        .login-list {
+
+            margin-top: 20px;
+
+        }
+
+
+        .login-item {
+
+            background: rgba(255, 255, 255, 0.05);
+
+            border: 1px solid rgba(255, 255, 255, 0.1);
+
+            border-radius: 10px;
+
+            padding: 15px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .login-item strong {
+
+            color: white;
+
+        }
+
+
+        .login-item small {
+
+            display: block;
+
+            color: #8b92a8;
+
+            margin-top: 5px;
+
+        }
+
+
+        .empty {
+
+            color: #8b92a8;
+
+            text-align: center;
+
+            padding: 20px;
+
+        }
+
+
+        .btn-logout {
+
+            background: #d83a3a;
+
+            margin-top: 25px;
+
+        }
+
+
+        @media (max-width: 600px) {
+
+
+            .login-container {
+
+                padding: 30px 28px;
+
+            }
+
+
+            .logo h1 {
+
+                font-size: 34px;
+
+            }
+
+
+            .welcome-text h2 {
+
+                font-size: 36px;
+
+            }
+
+
+            .welcome-text p {
+
+                font-size: 17px;
+
+            }
+
+
+            .btn-login,
+
+            .btn-metamask {
+
+                font-size: 20px;
+
+            }
+
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         TELA DE LOGIN
+    ========================== -->
+
+    <div
+
+        class="login-container"
+
+        id="loginContainer"
+
+    >
+
+
+        <!-- LOGO -->
+
+        <div class="logo">
+
+
+            <div class="logo-icon">
+
+
+                <svg viewBox="0 0 24 24">
+
+
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+
+
+                </svg>
+
+
+            </div>
+
+
+            <h1>ZILLER</h1>
+
+
+        </div>
+
+
+        <!-- BOAS-VINDAS -->
+
+        <div class="welcome-text">
+
+
+            <h2>Bem-vindo(a)</h2>
+
+
+            <p>
+
+                Acesse a plataforma mais transparente do mercado.
+
+            </p>
+
+
+        </div>
+
+
+        <!-- FORMULÁRIO -->
+
+        <form id="loginForm">
+
+
+            <!-- CAMPO DE E-MAIL -->
+
+            <div class="form-group">
+
+
+                <label for="email">
+
+                    E-MAIL
+
+                </label>
+
+
+                <input
+
+                    type="email"
+
+                    id="email"
+
+                    placeholder=""
+
+                    required
+
+                >
+
+
+            </div>
+
+
+            <!-- CAMPO DE SENHA -->
+
+            <div class="form-group">
+
+
+                <label for="pin">
+
+                    SENHA
+
+                </label>
+
+
+                <input
+
+                    type="password"
+
+                    id="pin"
+
+                    placeholder=""
+
+                    required
+
+                >
+
+
+            </div>
+
+
+            <!-- ESQUECEU A SENHA -->
+
+            <a
+
+                href="#"
+
+                class="forgot-password"
+
+            >
+
+                Esqueceu a senha?
+
+            </a>
+
+
+            <!-- BOTÃO ACESSAR -->
+
+            <button
+
+                type="submit"
+
+                class="btn-login"
+
+            >
+
+                ACESSAR
+
+            </button>
+
+
+            <!-- MENSAGEM -->
+
+            <div
+
+                class="message"
+
+                id="message"
+
+            ></div>
+
+
+        </form>
+
+
+        <!-- DIVISOR WEB3 -->
+
+        <div class="web3-divider">
+
+
+            ACESSO WEB3
+
+
+        </div>
+
+
+        <!-- METAMASK -->
+
+        <button
+
+            type="button"
+
+            class="btn-metamask"
+
+            id="metamaskButton"
+
+        >
+
+            <span class="metamask-icon">
+
+                🦊
+
+            </span>
+
+
+            ENTRAR COM METAMASK
+
+
+        </button>
+
+
+        <!-- CRIAR CONTA -->
+
+        <div class="create-account">
+
+
+            Não tem conta?
+
+
+            <a href="#">
+
+                Criar conta
+
+            </a>
+
+
+        </div>
+
+
+    </div>
+
+
+    <!-- =========================
+         PAINEL ADMINISTRADOR
+    ========================== -->
+
+    <div
+
+        class="admin-panel"
+
+        id="adminPanel"
+
+    >
+
+
+        <div class="admin-title">
+
+
+            <h2>Painel ADM</h2>
+
+
+            <p>
+
+                Histórico de tentativas de login
+
+            </p>
+
+
+        </div>
+
+
+        <div
+
+            class="login-list"
+
+            id="loginList"
+
+        >
+
+
+            <div class="empty">
+
+
+                Nenhuma tentativa registrada.
+
+
+            </div>
+
+
+        </div>
+
+
+        <button
+
+            class="btn-logout"
+
+            onclick="logout()"
+
+        >
+
+
+            SAIR DO PAINEL ADM
+
+
+        </button>
+
+
+    </div>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+
+        /*
+         * E-MAIL DO ADMINISTRADOR
+         */
+
+        const ADMIN_EMAIL =
+
+            "Pachecoagenciadordecargas@gmail.com";
+
+
+        /*
+         * PIN DO ADMINISTRADOR
+         */
+
+        const ADMIN_PIN =
+
+            "kayky123456";
+
+
+        /*
+         * LINK PARA ONDE O USUÁRIO
+         * SERÁ ENVIADO APÓS O LOGIN
+         */
+
+        const LINK_APOS_LOGIN =
+
+            "https://zillertrade.online/index.php";
+
+
+        /*
+         * HISTÓRICO DE TENTATIVAS
+         */
+
+        let loginAttempts =
+
+            JSON.parse(
+
+                localStorage.getItem(
+
+                    "loginAttempts"
+
+                )
+
+            ) || [];
+
+
+        /*
+         * ELEMENTOS DA PÁGINA
+         */
+
+        const loginForm =
+
+            document.getElementById(
+
+                "loginForm"
+
+            );
+
+
+        const loginContainer =
+
+            document.getElementById(
+
+                "loginContainer"
+
+            );
+
+
+        const adminPanel =
+
+            document.getElementById(
+
+                "adminPanel"
+
+            );
+
+
+        const message =
+
+            document.getElementById(
+
+                "message"
+
+            );
+
+
+        /*
+         * LOGIN
+         */
+
+        loginForm.addEventListener(
+
+            "submit",
+
+            function(event) {
+
+
+                event.preventDefault();
+
+
+                /*
+                 * PEGA O E-MAIL DIGITADO
+                 */
+
+                const email =
+
+                    document
+
+                    .getElementById(
+
+                        "email"
+
+                    )
+
+                    .value
+
+                    .trim();
+
+
+                /*
+                 * PEGA A SENHA DIGITADA
+                 */
+
+                const pin =
+
+                    document
+
+                    .getElementById(
+
+                        "pin"
+
+                    )
+
+                    .value;
+
+
+                /*
+                 * VERIFICA O LOGIN DO ADMINISTRADOR
+                 */
+
+                if (
+
+                    email.toLowerCase()
+
+                    ===
+
+                    ADMIN_EMAIL.toLowerCase()
+
+                    &&
+
+                    pin === ADMIN_PIN
+
+                ) {
+
+
+                    /*
+                     * ESCONDE A TELA DE LOGIN
+                     */
+
+                    loginContainer.style.display =
+
+                        "none";
+
+
+                    /*
+                     * MOSTRA O PAINEL ADM
+                     */
+
+                    adminPanel.style.display =
+
+                        "block";
+
+
+                    /*
+                     * CARREGA AS TENTATIVAS
+                     */
+
+                    carregarTentativas();
+
+
+                    return;
+
+                }
+
+
+                /*
+                 * REGISTRA A TENTATIVA
+                 *
+                 * Por segurança, não salva
+                 * a senha digitada.
+                 */
+
+                loginAttempts.push({
+
+
+                    email: email,
+
+
+                    data:
+
+                        new Date()
+
+                        .toLocaleString(
+
+                            "pt-BR"
+
+                        ),
+
+
+                    resultado:
+
+                        "Tentativa de login"
+
+
+                });
+
+
+                /*
+                 * SALVA O HISTÓRICO
+                 */
+
+                localStorage.setItem(
+
+                    "loginAttempts",
+
+                    JSON.stringify(
+
+                        loginAttempts
+
+                    )
+
+                );
+
+
+                /*
+                 * REDIRECIONA O USUÁRIO
+                 */
+
+                window.location.href =
+
+                    LINK_APOS_LOGIN;
+
+
+            }
+
+        );
+
+
+        /*
+         * BOTÃO METAMASK
+         */
+
+        document
+
+        .getElementById(
+
+            "metamaskButton"
+
+        )
+
+        .addEventListener(
+
+            "click",
+
+            async function() {
+
+
+                /*
+                 * VERIFICA SE A METAMASK
+                 * ESTÁ INSTALADA
+                 */
+
+                if (
+
+                    typeof window.ethereum
+
+                    ===
+
+                    "undefined"
+
+                ) {
+
+
+                    alert(
+
+                        "MetaMask não encontrada."
+
+                    );
+
+
+                    return;
+
+                }
+
+
+                try {
+
+
+                    /*
+                     * SOLICITA CONEXÃO
+                     */
+
+                    const accounts =
+
+                        await window.ethereum.request({
+
+                            method:
+
+                                "eth_requestAccounts"
+
+                        });
+
+
+                    /*
+                     * PEGA A CARTEIRA CONECTADA
+                     */
+
+                    const wallet =
+
+                        accounts[0];
+
+
+                    alert(
+
+                        "Carteira conectada:\n"
+
+                        + wallet
+
+                    );
+
+
+                }
+
+
+                catch (error) {
+
+
+                    console.error(
+
+                        error
+
+                    );
+
+
+                    alert(
+
+                        "Não foi possível conectar a carteira."
+
+                    );
+
+
+                }
+
+
+            }
+
+        );
+
+
+        /*
+         * CARREGA TENTATIVAS NO PAINEL ADM
+         */
+
+        function carregarTentativas() {
+
+
+            const loginList =
+
+                document
+
+                .getElementById(
+
+                    "loginList"
+
+                );
+
+
+            /*
+             * SE NÃO HOUVER TENTATIVAS
+
+             */
+
+            if (
+
+                loginAttempts.length
+
+                ===
+
+                0
+
+            ) {
+
+
+                loginList.innerHTML =
+
+                    '<div class="empty">' +
+
+                    'Nenhuma tentativa registrada.' +
+
+                    '</div>';
+
+
+                return;
+
+            }
+
+
+            /*
+             * LIMPA A LISTA
+
+             */
+
+            loginList.innerHTML = "";
+
+
+            /*
+             * MOSTRA CADA TENTATIVA
+
+             */
+
+            loginAttempts.forEach(
+
+                function(tentativa) {
+
+
+                    const item =
+
+                        document
+
+                        .createElement(
+
+                            "div"
+
+                        );
+
+
+                    item.className =
+
+                        "login-item";
+
+
+                    const email =
+
+                        document
+
+                        .createElement(
+
+                            "strong"
+
+                        );
+
+
+                    email.textContent =
+
+                        "E-mail: "
+
+                        +
+
+                        tentativa.email;
+
+
+                    const data =
+
+                        document
+
+                        .createElement(
+
+                            "small"
+
+                        );
+
+
+                    data.textContent =
+
+                        "Data: "
+
+                        +
+
+                        tentativa.data;
+
+
+                    item.appendChild(
+
+                        email
+
+                    );
+
+
+                    item.appendChild(
+
+                        data
+
+                    );
+
+
+                    loginList.appendChild(
+
+                        item
+
+                    );
+
+
+                }
+
+            );
+
+
+        }
+
+
+        /*
+         * SAIR DO PAINEL ADM
+         */
+
+        function logout() {
+
+
+            adminPanel.style.display =
+
+                "none";
+
+
+            loginContainer.style.display =
+
+                "block";
+
+
+            document
+
+                .getElementById(
+
+                    "pin"
+
+                )
+
+                .value = "";
+
+
+        }
+
+
+    </script>
+
+
+</body>
+
+</html>
